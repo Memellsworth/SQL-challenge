@@ -8,12 +8,18 @@ CREATE TABLE "departments" (
 
 CREATE TABLE "dept_emp" (
     "emp_no" INTEGER   NOT NULL,
-    "dept_no" VARCHAR   NOT NULL
+    "dept_no" VARCHAR   NOT NULL,
+    CONSTRAINT "pk_dept_emp" PRIMARY KEY (
+        "emp_no","dept_no"
+     )
 );
 
 CREATE TABLE "dept_manager" (
     "dept_no" VARCHAR   NOT NULL,
-    "emp_no" INTEGER   NOT NULL
+    "emp_no" INTEGER   NOT NULL,
+    CONSTRAINT "pk_dept_manager" PRIMARY KEY (
+        "dept_no","emp_no"
+     )
 );
 
 CREATE TABLE "employees" (
@@ -31,7 +37,10 @@ CREATE TABLE "employees" (
 
 CREATE TABLE "salaries" (
     "emp_no" INTEGER   NOT NULL,
-    "salary" BIGINT   NOT NULL
+    "salary" BIGINT   NOT NULL,
+    CONSTRAINT "pk_salaries" PRIMARY KEY (
+        "emp_no"
+     )
 );
 
 CREATE TABLE "titles" (
@@ -59,5 +68,3 @@ REFERENCES "titles" ("title_id");
 
 ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
-
-select * from departments
